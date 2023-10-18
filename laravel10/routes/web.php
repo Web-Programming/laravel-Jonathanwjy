@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\prodiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,3 +59,9 @@ Route::prefix("/dosen")->group(function(){
         echo "<h2>Materi Perkulihahan</h2>";
     });
 });
+
+Route::get('/prodi', [prodiController::class,"Index"]);
+
+Route::resource('/kurikulum', KurikulumController::class);
+
+Route::apiResource('/dosen', DosenController::class);

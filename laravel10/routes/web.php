@@ -65,3 +65,8 @@ Route::get('/prodi', [prodiController::class,"Index"]);
 Route::resource('/kurikulum', KurikulumController::class);
 
 Route::apiResource('/dosen', DosenController::class);
+
+Route::get("/mahasiswa/insert-elq", [MahasiswaController::class, 'InsertElq']);
+Route::get("/mahasiswa/update-elq", [MahasiswaController::class, 'UpdateElq']);
+Route::get("/mahasiswa/delete-elq", [MahasiswaController::class, 'deleteElq']);
+Route::get("/mahasiswa/select-elq", [MahasiswaController::class, 'selectElq']);

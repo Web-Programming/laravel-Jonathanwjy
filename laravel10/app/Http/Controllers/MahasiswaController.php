@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use app\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MahasiswaController extends Controller{
 
@@ -18,7 +20,7 @@ class MahasiswaController extends Controller{
 
         //mass alignment
         $mhs = Mahasiswa::insert(
-            [   
+            [
                 [
                 'nama' => 'Jonathan Wijaya', 'npm' => '2226250009', 'tempat_lahir' => 'Palembang',
                 'tanggal_lahir' => date('Y-m-d')
@@ -42,6 +44,12 @@ class MahasiswaController extends Controller{
     public function selectElq(){
         $result = DB::select('select * from mahasiswas');
         dump($result);
+    }
+
+    public function allJoinElq(){
+        $kampus = "Universitas Multi Data Palembang";
+        $mahasiswas =  Mahasiswa::has('prodi')->get();
+        return view('mahasiswa.index', ['allmahasiswa' => $mahasiswas, 'kampus' => $kampus]);
     }
 
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\prodiController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,7 +40,7 @@ Route::get("/profil/{nama?}/{pekerjaan?}",
             echo "Halo nama saya $nama dan saya adalah $pekerjaan";
 });
 
-//Redirect 
+//Redirect
 Route::get("/hubungi", function(){
     echo "<h1>Hubungi Kami</h1>";
 }) -> name("call");
@@ -70,3 +71,10 @@ Route::get("/mahasiswa/insert-elq", [MahasiswaController::class, 'InsertElq']);
 Route::get("/mahasiswa/update-elq", [MahasiswaController::class, 'UpdateElq']);
 Route::get("/mahasiswa/delete-elq", [MahasiswaController::class, 'deleteElq']);
 Route::get("/mahasiswa/select-elq", [MahasiswaController::class, 'selectElq']);
+
+Route::get('prodi/all-join-facade', [ProdiController::class, 'allJoinFacade']);
+Route::get('prodi/all-join-elq', [ProdiController::class,'allJoinElq']);
+Route::get('/mahasiswa/all-join-elq', [MahasiswaController::class, 'allJoinElq']);
+
+Route::get('/prodi/create', [ProdiController::class,'create']);
+Route::post('prodi/store', [ProdiController::class,'store']);

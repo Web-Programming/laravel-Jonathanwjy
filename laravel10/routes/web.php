@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\prodiController;
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\KurikulumController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,7 +63,6 @@ Route::prefix("/dosen")->group(function(){
     });
 });
 
-Route::get('/prodi', [prodiController::class,"Index"]);
 
 Route::resource('/kurikulum', KurikulumController::class);
 
@@ -76,5 +77,13 @@ Route::get('prodi/all-join-facade', [ProdiController::class, 'allJoinFacade']);
 Route::get('prodi/all-join-elq', [ProdiController::class,'allJoinElq']);
 Route::get('/mahasiswa/all-join-elq', [MahasiswaController::class, 'allJoinElq']);
 
-Route::get('/prodi/create', [ProdiController::class,'create']);
+Route::get('/prodi/create', [ProdiController::class,'create'])->name('prodi.create');
 Route::post('prodi/store', [ProdiController::class,'store']);
+
+ Route::get('/prodi', [ProdiController::class, 'index'])->name('prodi.index');
+ Route::get('/prodi/{id}', [ProdiController::class, 'show'])->with('prodi.show');
+
+ Route::get('/prodi/{prodi}/edit', [prodiController::class, 'edit'])->name('prodi.edit');
+ Route::patch('/prodi/{prodi}', [prodiController::class,'update'])->name('prodi.upate');
+
+

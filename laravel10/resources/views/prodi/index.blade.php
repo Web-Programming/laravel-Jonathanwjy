@@ -27,8 +27,20 @@
             <tbody>
                 @foreach($prodis as $item)
                 <tr>
+                    <td>
+                        <img src="{{ asset('storage/' .$item->foto) }}" width="100px" alt="">
+                    </td>
                     <td>{{ $item->nama}}</td>
-                    <td><a href="{{ url('/prodi/' .$item->id) }}" class="btn btn-warning">Detail</a></td>
+                    <td>
+                        <form action="{{ route('prodi.destroy', ['prodi' => $item->id ]) }}"
+                            method="POST">
+                            <a href="{{ url('/prodi/' .$item->id) }}" class="btn btn-warning">Detail</a>
+                            <a href="{{ url('prodi/' .$item->id. '/edit') }}" class="btn btn-info">Ubah</a>
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
